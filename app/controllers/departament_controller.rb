@@ -1,5 +1,5 @@
 class DepartamentController < ApplicationController
-  before_filter :authenticate_user!
+  before_filter :authenticate_user!, :find_page, only: [:edit, :update, :show, :destroy]
 
   def index
   	@departaments = Departament.all
@@ -20,20 +20,31 @@ class DepartamentController < ApplicationController
   end
 
   def edit
-
   end
 
   def update
-
+  	if @department.update(page_params)
+  		redirect_to departament_index_path
+  	else
+  		render :edit
+  	end
   end
 
   def destroy
-
+  	if @department.destroy
+  		redirect_to departament_index_path
+  	else
+  		redirect_to departament_index_path, error: 'Не удалось удалить отдел'
+  	end
   end
 
   private
 	  def page_params
 	  	params[:departament].permit(:name)
 	  end
+
+  def find_page
+  	@department = Departament.find(params[:id])
+  end
 
 end

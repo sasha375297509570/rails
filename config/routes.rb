@@ -8,11 +8,13 @@ Rails.application.routes.draw do
   get 'employee/index'
 
   
-  get 'departament/index'
-  get 'departament/new'
-  post 'departament/create'
+  get  'departament/index'
+  get  'departament/new'
+  post 'departament/create'=> 'departament#create', as: 'create_departament'
+  put 'departament/:id' => 'departament#update', as: 'update_departament'
+  delete 'departament/:id' => 'departament#destroy', as: 'delete_departament'
 
-  #resources :departament
+  resources :departament
   #match '/department',   to: 'department#index',   via: 'get'
   #match '/employee',   to: 'employee#index',   via: 'get'
   

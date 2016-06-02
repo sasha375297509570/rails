@@ -1,0 +1,8 @@
+<h1>Редактировать отдел</h1>
+
+<%= simple_form_for @department, url: update_departament_path(@department)  do |f| %>
+	<%= f.error_notification %>
+	
+	<%= f.input :name %>
+	<%= f.button :submit %>
+<% end %>

@@ -1,6 +1,8 @@
 <h1>Создать отдел</h1>
 
-<%= simple_form_for @departament, url: '/departament/create' do |f| %>
+<%= simple_form_for @departament, url: create_departament_path do |f| %>
+	<%= f.error_notification %>
+
 	<%= f.input :name %>
 	<%= f.button :submit %>
 <% end %>

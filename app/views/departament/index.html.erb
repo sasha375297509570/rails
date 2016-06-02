@@ -1,4 +1,4 @@
-<h1>Список отделов</h1>
+<h4 class="text-center">Список отделов</h4>
 
 <table class="table">
 	<thead>
@@ -9,10 +9,16 @@
 		</tr>
 	</thead>
 	<tbody>
-	<% @departaments.each do |depart| %>
+	<% @departaments.each do |department| %>
 		<tr>
 			<td>
-				<%= depart.name %>
+				<%= department.name %>
+			</td>
+			<td>
+				<%= link_to 'Edit',  edit_departament_path(department) %>
+			</td>
+			<td>
+				<%= link_to 'Delete', delete_departament_path(department), :method=>:delete %>
 			</td>
 		</tr>
 	<% end %>
