@@ -7,6 +7,8 @@ Rails.application.routes.draw do
   get 'admin/index'
   get 'departament/index'
   get 'employee/index'
+
+  resources :departaments
   #match '/department',   to: 'department#index',   via: 'get'
   #match '/employee',   to: 'employee#index',   via: 'get'
   

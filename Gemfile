@@ -8,6 +8,7 @@ gem 'mysql2', '>= 0.3.13', '< 0.5'
 
 gem 'devise'
 
+gem 'simple_form'
 gem 'bootstrap-sass'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
