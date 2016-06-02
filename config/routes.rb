@@ -5,10 +5,14 @@ Rails.application.routes.draw do
   get 'admin/index', as: 'user_root'
 
   get 'admin/index'
-  get 'departament/index'
   get 'employee/index'
 
-  resources :departaments
+  
+  get 'departament/index'
+  get 'departament/new'
+  post 'departament/create'
+
+  #resources :departament
   #match '/department',   to: 'department#index',   via: 'get'
   #match '/employee',   to: 'employee#index',   via: 'get'
   

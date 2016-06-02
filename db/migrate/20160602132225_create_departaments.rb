@@ -3,7 +3,6 @@ class CreateDepartaments < ActiveRecord::Migration
     create_table :departaments do |t|
       t.string :name
 
-      t.timestamps null: false
     end
   end
 end
