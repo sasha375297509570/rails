@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Workindays</title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+<div class="container">
+	<p class="notice"><%= notice %></p>
+	<p class="alert"><%= alert %></p>
+	<div>
+	<% if user_signed_in? %>
+	    <span>Здравствуйте, <%= current_user.email %></span>
+	    <%= link_to 'Выйти', destroy_user_session_path, :method => :delete %>
+	<% else %>
+	    <%= link_to 'Войти', new_user_session_path %> или <%= link_to 'Зарегистрироваться', new_user_registration_path %>
+	<% end %>
+	</div>
+
+	<% if user_signed_in? %>
+	<div>
+        <br />
+        <ul class="nav nav-justified">
+          <li class="active">
+          	<%= link_to 'Управление отделами',  '/departament/index' %>
+          </li>
+          <li class="active">
+          	<%= link_to 'Админ панель',  '/admin/index' %>
+          </li>
+          <li>
+          	<%= link_to 'Управление пользователями', '/employee/index' %>
+          </li>
+        </ul>
+     </div>
+     <% end %>
+
+	<%= yield %>
+</div>
+</body>
+</html>
