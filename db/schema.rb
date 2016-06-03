@@ -11,7 +11,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160603102409) do
+ActiveRecord::Schema.define(version: 20160603153939) do
+
+  create_table "days", force: :cascade do |t|
+    t.integer "number", limit: 4
+    t.integer "month",  limit: 4
+    t.integer "year",   limit: 4
+  end
 
   create_table "departaments", force: :cascade do |t|
     t.string "name", limit: 255
@@ -24,9 +30,14 @@ ActiveRecord::Schema.define(version: 20160603102409) do
 
   add_index "employees", ["departament_id"], name: "index_employees_on_departament_id", using: :btree
 
-  create_table "employeis", force: :cascade do |t|
-    t.string "name", limit: 255
+  create_table "employees_days", id: false, force: :cascade do |t|
+    t.integer "employee_id", limit: 4, null: false
+    t.integer "day_id",      limit: 4, null: false
+    t.string  "type",        limit: 1, null: false
   end
+
+  add_index "employees_days", ["day_id"], name: "index_employees_days_on_day_id", using: :btree
+  add_index "employees_days", ["employee_id"], name: "index_employees_days_on_employee_id", using: :btree
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  limit: 255, default: "", null: false
@@ -51,4 +62,6 @@ ActiveRecord::Schema.define(version: 20160603102409) do
   add_index "users", ["unlock_token"], name: "index_users_on_unlock_token", unique: true, using: :btree
 
   add_foreign_key "employees", "departaments"
+  add_foreign_key "employees_days", "days"
+  add_foreign_key "employees_days", "employees"
 end
