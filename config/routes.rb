@@ -24,6 +24,13 @@ Rails.application.routes.draw do
   delete 'employee/:id' => 'employee#destroy', as: 'delete_employee'
 
   resources :employee
+
+
+  get  'dayoff/index' => 'dayoff#index', as: 'dayoff'
+  get  'dayoff/:id/edit' => 'dayoff#edit', as: 'edit_dayoff'
+  delete 'dayoff/:id' => 'dayoff#destroy', as: 'delete_dayoff'
+
+  resources :dayoff
   #match '/department',   to: 'department#index',   via: 'get'
   #match '/employee',   to: 'employee#index',   via: 'get'
   

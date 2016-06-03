@@ -1,0 +1,38 @@
+<h4 class="text-center">Список выходных и отгулов</h4>
+
+<br />
+
+<table class="table">
+	<tbody>
+		<tr>
+			<th>
+				имя
+			</th>
+			<th>
+				отдел
+			</th>
+			<th colspan="3">
+				дата
+			</th>
+		</tr>
+	<% @dayoffs.each do |dayoff| %>
+		<tr>
+			<td>
+				<%= dayoff.employee.name %>
+			</td>
+			<td>
+				<%= dayoff.employee.departament.name %>
+			</td>
+			<td>
+				<%= dayoff.day.month %>/<%= dayoff.day.number %>/<%= dayoff.day.year %>
+			</td>
+			<td>
+				<%= link_to 'Изменить',  edit_dayoff_path(dayoff) %>
+			</td>
+			<td>
+				<%= link_to 'Удалить', delete_dayoff_path(dayoff), :method=>:delete %>
+			</td>
+		</tr>
+	<% end %>
+	</tbody>
+</table>

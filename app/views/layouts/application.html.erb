@@ -21,20 +21,35 @@
 
 	<% if user_signed_in? %>
 	<div>
-        <br />
-        <ul class="nav nav-justified">
-          <li class="active">
-          	<%= link_to 'Управление отделами',  departament_index_path %>
-          </li>
-          <li class="active">
-          	<%= link_to 'Админ панель',  admin_index_path %>
-          </li>
-          <li>
-          	<%= link_to 'Управление работниками', employee_index_path %>
-          </li>
-        </ul>
-     </div>
+    <br />
+    <ul class="nav nav-justified">
+      <li class="active">
+      	<%= link_to 'Управление отделами',  departament_index_path %>
+      </li>
+      <li class="active">
+      	<%= link_to 'Админ панель',  admin_index_path %>
+      </li>
+      <li>
+      	<%= link_to 'Управление работниками', employee_index_path %>
+      </li>
+    </ul>
+  </div>
   <% end %>
+
+  <div>
+    <br />
+    <ul class="nav nav-justified">
+      <li class="active">
+        <%= link_to 'Управление выходными',  dayoff_path %>
+      </li>
+      <li class="active">
+        <%= link_to 'Главная',  '/' %>
+      </li>
+      <li>
+        <%= link_to 'Управление отпусками', '/' %>
+      </li>
+    </ul>
+  </div>
 
 	<%= yield %>
 </div>
