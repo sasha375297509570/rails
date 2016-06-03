@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160603153943) do
+ActiveRecord::Schema.define(version: 20160603153945) do
 
   create_table "days", force: :cascade do |t|
     t.integer "number", limit: 4
@@ -62,7 +62,7 @@ ActiveRecord::Schema.define(version: 20160603153943) do
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   add_index "users", ["unlock_token"], name: "index_users_on_unlock_token", unique: true, using: :btree
 
-  add_foreign_key "employees", "departaments"
-  add_foreign_key "employees_days", "days"
-  add_foreign_key "employees_days", "employees"
+  add_foreign_key "employees", "departaments", name: "fk_employees_departament", on_delete: :cascade
+  add_foreign_key "employees_days", "days", name: "fk_employees_days_day", on_delete: :cascade
+  add_foreign_key "employees_days", "employees", name: "fk_employees_days_employee", on_delete: :cascade
 end
