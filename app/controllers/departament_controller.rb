@@ -1,5 +1,6 @@
 class DepartamentController < ApplicationController
-  before_filter :authenticate_user!, :find_page, only: [:edit, :update, :show, :destroy]
+  before_filter :authenticate_user!
+  before_filter :find_page, only: [:edit, :update, :show, :destroy]
 
   def index
   	@departaments = Departament.all

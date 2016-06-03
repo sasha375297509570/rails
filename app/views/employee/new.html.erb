@@ -1,0 +1,9 @@
+<h1>Создать работника</h1>
+
+<%= simple_form_for @employee, url: create_employee_path do |f| %>
+	<%= f.error_notification %>
+
+	<%= f.input :name %>
+	<%= f.association :departament %>
+	<%= f.button :submit %>
+<% end %>

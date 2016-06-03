@@ -11,9 +11,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160602132225) do
+ActiveRecord::Schema.define(version: 20160603102409) do
 
   create_table "departaments", force: :cascade do |t|
+    t.string "name", limit: 255
+  end
+
+  create_table "employees", force: :cascade do |t|
+    t.string  "name",           limit: 255
+    t.integer "departament_id", limit: 4
+  end
+
+  add_index "employees", ["departament_id"], name: "index_employees_on_departament_id", using: :btree
+
+  create_table "employeis", force: :cascade do |t|
     t.string "name", limit: 255
   end
 
@@ -39,4 +50,5 @@ ActiveRecord::Schema.define(version: 20160602132225) do
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   add_index "users", ["unlock_token"], name: "index_users_on_unlock_token", unique: true, using: :btree
 
+  add_foreign_key "employees", "departaments"
 end

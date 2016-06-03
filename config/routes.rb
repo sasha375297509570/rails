@@ -15,6 +15,15 @@ Rails.application.routes.draw do
   delete 'departament/:id' => 'departament#destroy', as: 'delete_departament'
 
   resources :departament
+
+  get  'employee/index' => 'employee#index', as: 'employee'
+  get  'employee/new'
+  get  'employee/:id/edit' => 'employee#edit', as: 'edit_employee'
+  post 'employee/create'=> 'employee#create', as: 'create_employee'
+  put 'employee/:id' => 'employee#update', as: 'update_employee'
+  delete 'employee/:id' => 'employee#destroy', as: 'delete_employee'
+
+  resources :employee
   #match '/department',   to: 'department#index',   via: 'get'
   #match '/employee',   to: 'employee#index',   via: 'get'
   
