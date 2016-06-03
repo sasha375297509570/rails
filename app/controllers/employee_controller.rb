@@ -2,8 +2,11 @@ class EmployeeController < ApplicationController
   before_filter :authenticate_user!
   before_filter :find_page, only: [:edit, :update, :show, :destroy]
   
+  
+  @@employee_pagination = 30
+  
   def index
-  	@employees = Employee.all
+  	@employees = Employee.paginate(page: params[:page], per_page: @@employee_pagination)
   end
 
   def new

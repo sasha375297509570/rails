@@ -2,7 +2,8 @@
 <div>
 	<%= link_to 'Создать отдел',  departament_new_path %>
 </div>
-<br />
+
+<%= will_paginate @departaments %>
 <table class="table">
 	<tbody>
 		<tr>
@@ -25,3 +26,4 @@
 	<% end %>
 	</tbody>
 </table>
+<%= will_paginate @departaments %>

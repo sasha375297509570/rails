@@ -2,8 +2,10 @@ class DepartamentController < ApplicationController
   before_filter :authenticate_user!
   before_filter :find_page, only: [:edit, :update, :show, :destroy]
 
+  @@departaments_pagination = 10
+
   def index
-  	@departaments = Departament.all
+  	@departaments = Departament.paginate(page: params[:page], per_page: @@departaments_pagination)
   end
 
   def new

@@ -2,8 +2,8 @@
 <div>
 	<%= link_to 'Создать работника',  employee_new_path %>
 </div>
-<br />
 
+<%= will_paginate @employees %>
 <table class="table">
 	<tbody>
 		<tr>
@@ -32,3 +32,4 @@
 	<% end %>
 	</tbody>
 </table>
+<%= will_paginate @employees %>

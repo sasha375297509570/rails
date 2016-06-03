@@ -8,6 +8,8 @@ gem 'mysql2', '>= 0.3.13', '< 0.5'
 
 gem 'devise'
 
+gem 'will_paginate', '3.0.4'
+
 gem 'simple_form'
 gem 'bootstrap-sass'
 # Use SCSS for stylesheets
