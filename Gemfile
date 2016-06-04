@@ -10,6 +10,10 @@ gem 'devise'
 
 gem 'will_paginate', '3.0.4'
 
+gem 'momentjs-rails', '>= 2.8.1'
+gem 'bootstrap3-datetimepicker-rails', '~> 4.0.0'
+gem 'sprockets-rails', '2.3.3'
+
 gem 'simple_form'
 gem 'bootstrap-sass'
 # Use SCSS for stylesheets
@@ -51,3 +55,4 @@ end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
+

@@ -1,6 +1,8 @@
 <h4 class="text-center">Список выходных и отгулов</h4>
 
-
+<div>
+	<%= link_to 'Добавить выходной или отгул',  dayoff_new_path %>
+</div>
 <%= will_paginate @dayoffs %>
 <table class="table">
 	<tbody>

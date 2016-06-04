@@ -27,7 +27,9 @@ Rails.application.routes.draw do
 
 
   get  'dayoff/index' => 'dayoff#index', as: 'dayoff'
+  get  'dayoff/new'
   get  'dayoff/:id/edit' => 'dayoff#edit', as: 'edit_dayoff'
+  post 'dayoff/create'=> 'dayoff#create', as: 'create_dayoff'
   delete 'dayoff/:id' => 'dayoff#destroy', as: 'delete_dayoff'
 
   resources :dayoff
