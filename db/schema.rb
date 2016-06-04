@@ -11,12 +11,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160603153945) do
+ActiveRecord::Schema.define(version: 20160603153948) do
 
   create_table "days", force: :cascade do |t|
-    t.integer "number", limit: 4
-    t.integer "month",  limit: 4
-    t.integer "year",   limit: 4
+    t.date "date", null: false
   end
 
   create_table "departaments", force: :cascade do |t|

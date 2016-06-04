@@ -7,9 +7,10 @@ class DayoffController < ApplicationController
    
 
  def index
-   	@dayoffs = EmployeesDay.paginate(page: params[:page], per_page: @@dayoffs_pagination)
-  					.where('kind = ?', @@dayoffs_type)
-  					.order('employee_id DESC, day_id ASC')
+@dayoffs = EmployeesDay.paginate(page: params[:page], per_page: @@dayoffs_pagination).
+				joins('INNER JOIN days ON days.id = employees_days.day_id')
+				.where('kind = ? AND days.date >= ?', @@dayoffs_type, Date.current)
+				.order('employee_id DESC, day_id ASC')
  end
 
  def edit
