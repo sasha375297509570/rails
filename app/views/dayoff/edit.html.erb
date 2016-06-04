@@ -1,0 +1,14 @@
+<h4>Редактировать работника</h4>
+
+<%= javascript_include_tag :datetime%>
+<%= simple_form_for @dayoff, url: update_dayoff_path do |f| %>
+	<%= f.error_notification %>
+
+	<%= f.input :employee_id, as: :hidden %>
+	<%= f.input :day_id, as: :hidden %>
+
+	<%= f.association :employee %>
+	<%= f.association :day, :label_method => :date, :value_method => :id %>
+			
+	<%= f.button :submit %>
+<% end %>

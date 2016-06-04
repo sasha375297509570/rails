@@ -1,6 +1,6 @@
 class EmployeeController < ApplicationController
   before_filter :authenticate_user!
-  before_filter :find_page, only: [:edit, :update, :show, :destroy]
+  before_filter :find_page, only: [:edit, :update, :destroy]
   
   
   @@employee_pagination = 30
