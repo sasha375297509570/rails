@@ -1,6 +1,6 @@
 class DayoffController < ApplicationController
    
-   before_filter :find_page, only: [:update, :destroy]
+   before_filter :find_page, only: [:edit, :update, :destroy]
 
    @@dayoffs_type = 1
    @@dayoffs_pagination = 5
@@ -50,9 +50,6 @@ class DayoffController < ApplicationController
  end
 
  def edit
- 	@dayoff = EmployeesDay.find_by_id(params[:id])
-  	@oldDay = @dayoff.day_id
-  	@oldEmployee = @dayoff.employee_id
  end
 
  def update
@@ -62,10 +59,12 @@ class DayoffController < ApplicationController
   	@isExistEmployeesDay = EmployeesDay.where('employee_id = ? AND day_id = ?', @employeeId, @dayId)
 	@isExistEmployeesDay.each do |isExist|
 	  	if  isExist.id
+	  			
 	  		redirect_to dayoff_path
 	  		return
 	  	end
 	end
+
 
   	if @dayoff.update(page_params)
   		redirect_to dayoff_path
