@@ -56,3 +56,5 @@ end
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
+gem "validates_date_time", :git => "git://github.com/sofatutor/validates_date_time"
+

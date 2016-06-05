@@ -1,1 +1,12 @@
 <h4 class="text-center">Добавить отпуск</h4>
+
+<%= simple_form_for @vacation, url: create_vacation_path do |f| %>
+	<%= f.error_notification %>
+
+	<%= f.association :employee %>
+	
+	<%= date_field(:employees_day, :day_start) %>
+	<%= date_field(:employees_day, :day_end) %>
+
+	<%= f.button :submit %>
+<% end %>

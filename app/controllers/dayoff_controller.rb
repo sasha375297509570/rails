@@ -17,7 +17,7 @@ class DayoffController < ApplicationController
   	if @dayoff.destroy
   		redirect_to dayoff_path
   	else
-  		redirect_to dayoff_path, error: 'Не удалось удалить отдел'
+  		redirect_to dayoff_path, error: 'Не удалось удалить выходной или отгул'
   	end
  end
 
@@ -26,20 +26,19 @@ class DayoffController < ApplicationController
  end
 
  def create
-  	@dayoff = EmployeesDay.new(page_params)
-  	@day = Day.find_by date: Date.parse(page_params[:day_id]);
+  	@dayoff = EmployeesDay.new
+  	@day = Day.find_by date: Date.parse(page_params[:day_start]);
   	@dayId = @day.id
   	@employeeId = page_params[:employee_id]
   	
-  	@isExistEmployeesDay = EmployeesDay.where('employee_id = ? AND day_id = ?', @employeeId, @dayId)
-	@isExistEmployeesDay.each do |isExist|
-	  	if  isExist.id
-	  		redirect_to dayoff_path
-	  		return
-	  	end
+  	@isExistEmployeesDay = EmployeesDay
+		.where('employee_id = ? AND day_id = ?', @employeeId, @dayId)
+	if @isExistEmployeesDay
+		@isExistEmployeesDay.destroy_all
 	end
-
+		
   	@dayoff.day_id = @dayId;
+	@dayoff.employee_id = @employeeId
   	@dayoff.kind = @@dayoffs_type
   
   	if @dayoff.save
@@ -56,15 +55,11 @@ class DayoffController < ApplicationController
   	@dayId = page_params[:day_id]
   	@employeeId = page_params[:employee_id]
 
-  	@isExistEmployeesDay = EmployeesDay.where('employee_id = ? AND day_id = ?', @employeeId, @dayId)
-	@isExistEmployeesDay.each do |isExist|
-	  	if  isExist.id
-	  			
-	  		redirect_to dayoff_path
-	  		return
-	  	end
+  	@isExistEmployeesDay = EmployeesDay
+		.where('employee_id = ? AND day_id = ?', @employeeId, @dayId)
+	if @isExistEmployeesDay
+		@isExistEmployeesDay.destroy_all
 	end
-
 
   	if @dayoff.update(page_params)
   		redirect_to dayoff_path
@@ -76,7 +71,7 @@ class DayoffController < ApplicationController
 
  private
 	  def page_params
-	  	params[:employees_day].permit(:employee_id, :day_id)
+	  	params[:employees_day].permit(:employee_id, :day_id, :day_start, :day_end)
 	  end
 
  def find_page
