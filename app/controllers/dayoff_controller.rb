@@ -3,11 +3,11 @@ class DayoffController < ApplicationController
    before_filter :find_page, only: [:edit, :update, :destroy]
 
    @@dayoffs_type = 1
-   @@dayoffs_pagination = 5
+   @@dayoffs_pagination = 100
    
 
  def index
-@dayoffs = EmployeesDay.paginate(page: params[:page], per_page: @@dayoffs_pagination).
+ @dayoffs = EmployeesDay.paginate(page: params[:page], per_page: @@dayoffs_pagination).
 				joins('INNER JOIN days ON days.id = employees_days.day_id')
 				.where('kind = ? AND days.date >= ?', @@dayoffs_type, Date.current)
 				.order('employee_id DESC, day_id ASC')
@@ -74,7 +74,7 @@ class DayoffController < ApplicationController
  end
 
 
-private
+ private
 	  def page_params
 	  	params[:employees_day].permit(:employee_id, :day_id)
 	  end

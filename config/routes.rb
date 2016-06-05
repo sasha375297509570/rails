@@ -34,6 +34,16 @@ Rails.application.routes.draw do
   delete 'dayoff/:id' => 'dayoff#destroy', as: 'delete_dayoff'
 
   resources :dayoff
+
+
+  get  'vacation/index' => 'vacation#index', as: 'vacation'
+  get  'vacation/new'
+  get  'vacation/:id/edit' => 'vacation#edit', as: 'edit_vacation'
+  post 'vacation/create'=> 'vacation#create', as: 'create_vacation'
+  put  'vacation/:id' => 'vacation#update', as: 'update_vacation'
+  delete 'vacation/:strtid/:endid' => 'vacation#destroy', as: 'delete_vacation'
+
+  resources :vacation
   #match '/department',   to: 'department#index',   via: 'get'
   #match '/employee',   to: 'employee#index',   via: 'get'
   

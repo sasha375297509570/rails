@@ -1,0 +1,113 @@
+<h4 class="text-center">Список отпусков</h4>
+
+<div>
+	<%= link_to 'Добавить отпуск',  vacation_new_path %>
+</div>
+
+<table class="table">
+	<tbody>
+		<tr>
+			<th>
+				имя
+			</th>
+			<th>
+				отдел
+			</th>
+			<th colspan="3">
+				дата
+			</th>
+		</tr>
+	<% 
+		@cnt = 0
+		@isInterval = 0
+		@isPrint = false;
+		
+
+		@vacations.each do |vacation|
+
+			if @cnt != 0 && ((@isInterval + 1) != vacation.day_id)
+				@isInterval = 0
+				@isPrint = true;
+			end
+
+			#можно в последующем оформить отдельным блоком
+			if @isPrint 
+	%>
+				<tr>
+					<td>
+						<%= @localEmployName %>
+					</td>
+					<td>
+						<%= @localEmployDepartament %>
+					</td>
+					<td>
+						<%= @localBeginDay.strftime("%m/%d/%Y") %> - <%= @localEndDay.strftime("%m/%d/%Y") %>
+					</td>
+					<td class="indexTableTdDayoff text-right">
+						<%= link_to 'Изменить',  '/' %>
+					</td>
+					<td class="indexTableTd text-right">
+						<%= link_to 'Удалить', 
+							delete_vacation_path(@localBeginEmployDaysId, @localEndEmployDaysId), 
+							:method=>:delete 
+						%>
+					</td>
+				</tr>
+			<% @isPrint = false %>
+			<% end #можно в последующем оформить отдельным блоком %>
+
+			
+	<%
+		if @isInterval == 0
+			@localBeginEmployDaysId = vacation.id
+			@localEndEmployDaysId = vacation.id
+
+			@localBeginDay = vacation.day.date
+			@localEndDay = vacation.day.date
+
+			@localEmployName = vacation.employee.name
+			@localEmployDepartament = vacation.employee.departament.name
+
+			@isInterval = vacation.day_id
+		end
+
+		if @cnt != 0 && ((@isInterval + 1) == vacation.day_id)
+			@localEndEmployDaysId = vacation.id
+			@localEndDay = vacation.day.date
+
+			@isInterval = vacation.day_id
+		end
+
+		@cnt += 1
+
+		#можно в последующем оформить отдельным блоком
+		if @vacations.length == @cnt %>
+			<tr>
+				<td>
+					<%= @localEmployName %>
+				</td>
+				<td>
+					<%= @localEmployDepartament %>
+				</td>
+				<td>
+					<%= @localBeginDay.strftime("%m/%d/%Y") %> - <%= @localEndDay.strftime("%m/%d/%Y") %>
+				</td>
+				<td class="indexTableTd text-right">
+					<%= link_to 'Изменить',  '/' %>
+				</td>
+				<td class="indexTableTd text-right">
+					<%= link_to 'Удалить', 
+						delete_vacation_path(@localBeginEmployDaysId, @localEndEmployDaysId), 
+						:method=>:delete 
+					%>
+				</td>
+			</tr>
+		<% end 
+		#можно в последующем оформить отдельным блоком
+
+	end 
+	%>
+
+	
+	</tbody>
+</table>

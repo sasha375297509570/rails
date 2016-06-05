@@ -28,10 +28,10 @@
 			<td>
 				<%= dayoff.day.date.strftime("%m/%d/%Y") %>
 			</td>
-			<td class="indexTableTdDayoff text-right">
+			<td class="indexTableTd text-right">
 				<%= link_to 'Изменить',  edit_dayoff_path(dayoff) %>
 			</td>
-			<td class="indexTableTdDayoff text-right">
+			<td class="indexTableTd text-right">
 				<%= link_to 'Удалить', delete_dayoff_path(dayoff), :method=>:delete %>
 			</td>
 		</tr>
